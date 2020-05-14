@@ -37,6 +37,13 @@ class TestHaarAlgorithm(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             algorithm.direct_transform(input_signal)
+    
+    def test_direct_transform_non_grade_two(self):
+        input_signal = [220, 211, 212]
+        algorithm = HaarAlgotithm()
+
+        with self.assertRaises(Exception):
+            algorithm.direct_transform(input_signal)
 
 
 if __name__ == "__main__":

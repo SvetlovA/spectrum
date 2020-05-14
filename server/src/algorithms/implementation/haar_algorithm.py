@@ -10,6 +10,9 @@ class HaarAlgotithm(BaseAlgorithm):
         if len(signal) <= 1:
             return signal
 
+        if len(signal) % 2 != 0:
+            raise Exception('Signal list count must be grade 2')
+
         detailed_coeficients = []
         aproximate_signal = []
 

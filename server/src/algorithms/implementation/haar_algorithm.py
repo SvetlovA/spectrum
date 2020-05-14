@@ -4,6 +4,9 @@ from ..base_algorithm import BaseAlgorithm
 class HaarAlgotithm(BaseAlgorithm):
 
     def direct_transform(self, signal):
+        if signal is None:
+            raise TypeError('Argument signal is None')
+
         if len(signal) <= 1:
             return signal
 

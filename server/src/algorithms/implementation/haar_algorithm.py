@@ -25,4 +25,28 @@ class HaarAlgotithm(BaseAlgorithm):
 
 
     def inverse_transform(self, transformed_signal):
-        raise NotImplementedError
+        if transformed_signal is None:
+            raise TypeError('Argument signal is None')
+
+        if len(transformed_signal) <= 1:
+            return transformed_signal
+
+        if len(transformed_signal) % 2 != 0:
+            raise Exception('Signal list count must be grade 2')
+
+        signal_first_part, signal_second_part = self.__get_signal_parts(transformed_signal)
+        signal_second_part = self.inverse_transform(signal_second_part)
+
+        if len(signal_first_part) != len(signal_second_part):
+            raise Exception('Second and first parts of signal mast be same')
+
+        result_signal = []
+        for first_point, second_point in zip(signal_first_part, signal_second_part):
+            result_signal.append(second_point + first_point)
+            result_signal.append(second_point - first_point)
+
+        return result_signal
+
+    def __get_signal_parts(self, input_signal):
+        half_signal_length = len(input_signal) // 2
+        return input_signal[:half_signal_length:], input_signal[half_signal_length::]

@@ -110,7 +110,7 @@ class TestHaarAlgorithm(unittest.TestCase):
         expected_result = []
         actual_result = algorithm.filter_signal(input_signal, 4)
         self.assertEqual(expected_result, actual_result)
-    
+
     def test_filter_signal_input_signal_none(self):
         algorithm = HaarAlgotithm()
 
@@ -128,6 +128,14 @@ class TestHaarAlgorithm(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             algorithm.filter_signal(None, None)
+
+    def test_filter_signal_non_grade_two(self):
+        input_signal = [220, 211, 212]
+        algorithm = HaarAlgotithm()
+
+        expected_result = [218.25, 209.25, 213.75, 213.75]
+        actual_result = algorithm.filter_signal(input_signal, 4)
+        self.assertEqual(expected_result, actual_result)
 
 if __name__ == "__main__":
     unittest.main()

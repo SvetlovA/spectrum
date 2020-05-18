@@ -12,7 +12,7 @@ class BaseAlgorithm(ABC):
         pass
 
     def filter_signal(self, input_signal, threshold):
-        if input_signal is None or threshold is None:
+        if input_signal is None or not threshold:
             raise TypeError
 
         BaseAlgorithm.__complete_signal(input_signal)

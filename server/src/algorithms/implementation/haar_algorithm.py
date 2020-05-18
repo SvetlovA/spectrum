@@ -3,7 +3,7 @@ from ..base_algorithm import BaseAlgorithm
 
 class HaarAlgotithm(BaseAlgorithm):
 
-    def direct_transform(self, signal):
+    def direct_transform(self, signal: list) -> list:
         if signal is None:
             raise TypeError('Argument signal is None')
 
@@ -24,7 +24,7 @@ class HaarAlgotithm(BaseAlgorithm):
         return detailed_coeficients
 
 
-    def inverse_transform(self, transformed_signal):
+    def inverse_transform(self, transformed_signal: list) -> list:
         if transformed_signal is None:
             raise TypeError('Argument signal is None')
 
@@ -47,6 +47,6 @@ class HaarAlgotithm(BaseAlgorithm):
 
         return result_signal
 
-    def __get_signal_parts(self, input_signal):
+    def __get_signal_parts(self, input_signal: list) -> tuple:
         half_signal_length = len(input_signal) // 2
         return input_signal[:half_signal_length:], input_signal[half_signal_length::]

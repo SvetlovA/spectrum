@@ -4,14 +4,14 @@ from abc import ABC, abstractmethod
 class BaseAlgorithm(ABC):
 
     @abstractmethod
-    def direct_transform(self, signal):
+    def direct_transform(self, signal: list) -> list:
         pass
 
     @abstractmethod
-    def inverse_transform(self, transformed_signal):
+    def inverse_transform(self, transformed_signal: list) -> list:
         pass
 
-    def filter_signal(self, input_signal, threshold):
+    def filter_signal(self, input_signal: list, threshold: int) -> list:
         if input_signal is None or not threshold:
             raise TypeError
 
@@ -22,7 +22,7 @@ class BaseAlgorithm(ABC):
         return self.inverse_transform(filtered_transformed_signal)
 
     @staticmethod
-    def __complete_signal(signal):
+    def __complete_signal(signal: list) -> None:
         if len(signal) <= 1:
             return
 

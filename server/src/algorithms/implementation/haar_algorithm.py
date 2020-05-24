@@ -34,7 +34,7 @@ class HaarAlgotithm(BaseAlgorithm):
         if len(transformed_signal) % 2 != 0:
             raise Exception('Signal list count must be grade 2')
 
-        signal_first_part, signal_second_part = self.__get_signal_parts(transformed_signal)
+        signal_first_part, signal_second_part = HaarAlgotithm.__get_signal_parts(transformed_signal)
         signal_second_part = self.inverse_transform(signal_second_part)
 
         if len(signal_first_part) != len(signal_second_part):
@@ -47,6 +47,7 @@ class HaarAlgotithm(BaseAlgorithm):
 
         return result_signal
 
-    def __get_signal_parts(self, input_signal: list) -> tuple:
+    @staticmethod
+    def __get_signal_parts(input_signal: list) -> tuple:
         half_signal_length = len(input_signal) // 2
         return input_signal[:half_signal_length:], input_signal[half_signal_length::]

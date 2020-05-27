@@ -10,7 +10,7 @@ class HaarAlgotithm(BaseAlgorithm):
         if len(signal) <= 1:
             return signal
 
-        if len(signal) % 2 != 0:
+        if not len(signal) % 2:
             raise Exception('Signal list count must be grade 2')
 
         detailed_coeficients = []
@@ -31,7 +31,7 @@ class HaarAlgotithm(BaseAlgorithm):
         if len(transformed_signal) <= 1:
             return transformed_signal
 
-        if len(transformed_signal) % 2 != 0:
+        if not len(transformed_signal) % 2:
             raise Exception('Signal list count must be grade 2')
 
         signal_first_part, signal_second_part = HaarAlgotithm.__get_signal_parts(transformed_signal)

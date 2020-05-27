@@ -26,5 +26,5 @@ class BaseAlgorithm(ABC):
         if len(signal) <= 1:
             return
 
-        while not len(signal) % 2:
+        while len(signal) % 2:
             signal.append(signal[-1])

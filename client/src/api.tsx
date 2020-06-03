@@ -1,4 +1,4 @@
-export const processRequest = async (path: string, method: string, data: any) => {
+const processRequest = async (path: string, method: string, data: any) => {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -10,4 +10,6 @@ export const processRequest = async (path: string, method: string, data: any) =>
     });
 
     return await response.json();
-}
+};
+
+export default processRequest;

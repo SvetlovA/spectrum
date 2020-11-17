@@ -1,7 +1,8 @@
+import { SelectionRange } from "plotly.js";
 import React from "react"
 
 interface ChosePlotCoordinatesFileButtonProps {
-    onChange?: (fileText: string) => void;
+    onChange: (points: SelectionRange) => void;
 }
 
 export const ChosePlotCoordinatesFileButton: React.FC<ChosePlotCoordinatesFileButtonProps> = (props: ChosePlotCoordinatesFileButtonProps) => {
@@ -9,11 +10,12 @@ export const ChosePlotCoordinatesFileButton: React.FC<ChosePlotCoordinatesFileBu
         const reader = new FileReader();
         reader.onload = async (e: any) => { 
             const text = e.target.result;
-            console.log(text);
-            props.onChange && props.onChange(text);
+            const coordinates = JSON.parse(text) as SelectionRange
+            props.onChange(coordinates);
         };
-        reader.readAsText(event.target.files[0]);
+
+        event?.target?.files?.length && reader.readAsText(event.target.files[0]);
     };
 
-    return <input type="file" accept=".txt" onChange={handleChange} />
+    return <input type="file" accept=".txt, .json" onChange={handleChange} />
 }

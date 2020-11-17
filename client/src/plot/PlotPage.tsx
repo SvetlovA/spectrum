@@ -1,4 +1,6 @@
-import React from 'react';
+import { SelectionRange } from 'plotly.js';
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import Plot from 'react-plotly.js';
 import { ChosePlotCoordinatesFileButton } from './ChosePlotCoordinatesFileButton';
 
@@ -7,24 +9,25 @@ interface PlotPageProps {
 }
 
 export const PlotPage: React.FC<PlotPageProps> = (props: PlotPageProps) => {
-
+    const [selectionRange, setSelectionRange] = useState({} as SelectionRange);
     return (
-        <div>
+        <>
             <Plot
                 data={[
                     {
-                        x: [1, 2, 3],
-                        y: [2, 6, 3],
+                        x: selectionRange.x,
+                        y: selectionRange.y,
                         type: 'scatter',
                         mode: 'lines+markers',
                         marker: { color: 'red' },
                     }
                 ]}
-                layout={{ title: 'A Fancy Plot', autosize: true }}
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
+                layout={{ title: 'Haar transform', autosize: true }}
+                useResizeHandler={ true }
+                style={{ width: '100%', height: '100%' }}
             />
-            <ChosePlotCoordinatesFileButton />
-        </div>
+            <ChosePlotCoordinatesFileButton onChange={coordinates => setSelectionRange(coordinates)} />
+            <Button variant='primary'>Filter</Button>
+        </>
     );
 };
